@@ -15,7 +15,10 @@ use function esc_url;
 use function explode;
 use function implode;
 use function in_array;
+use function ksort;
+use function sprintf;
 use function trim;
+use function wp_allowed_protocols;
 
 trait HtmlAttributesTrait
 {
@@ -99,7 +102,7 @@ trait HtmlAttributesTrait
                 continue;
             }
             if ($key === 'href') {
-                $newAttributes[$key] = sprintf('%s="%s"', $key, esc_url($value));
+                $newAttributes[$key] = sprintf('%s="%s"', $key, esc_url($value, ['fb-messenger', ...wp_allowed_protocols()]));
 
                 continue;
             }
