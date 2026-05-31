@@ -130,7 +130,7 @@ trait HtmlAttributesTrait
         if (count($classList) > 0) {
             $newAttributes['class'] = implode(' ', array_unique(array_filter(
                 $classList,
-                static fn(string $class): bool => $class !== '',
+                static fn(string $class): bool => $class !== '' && $class !== '0',
             )));
         }
 
