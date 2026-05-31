@@ -128,7 +128,10 @@ trait HtmlAttributesTrait
         }
         $newAttributes = array_merge(...$attributes);
         if (count($classList) > 0) {
-            $newAttributes['class'] = implode(' ', array_unique(array_filter($classList)));
+            $newAttributes['class'] = implode(' ', array_unique(array_filter(
+                $classList,
+                static fn(string $class): bool => $class !== '',
+            )));
         }
 
         return $newAttributes;
